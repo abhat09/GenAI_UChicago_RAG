@@ -9,10 +9,10 @@ from langchain_community.vectorstores import Chroma
 
 # Load environment variables
 load_dotenv()
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-
+api_key = os.getenv("GOOGLE_API_KEY")
+genai.configure(api_key=api_key)
 # Load Chroma DB
-embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-mpnet-base-v2")
 db = Chroma(persist_directory="./chroma_uchicago_ads", embedding_function=embedding_model)  
 
 # Initialize Gemini model
